@@ -7,7 +7,7 @@ ENV DB_HOST="mysql"
 CMD ["node", "index.js"]
 
 
-# set DB_HOST="msql container name" because the container IP changes if contianer is restarted
+# set DB_HOST="msql container name" because the container IP changes if container is restarted
 
 # docker build -t backend:1.0.0 .
 # docker run -d --name backend backend:1.0.0
@@ -19,3 +19,23 @@ CMD ["node", "index.js"]
 # if you are using default n/w docker containers can't communicate with each other
 
 # For containers to communicate we need to create network
+
+# docker network create expense
+# docker network ls
+
+# disconnect the containers from default network and add them to the network created
+
+# docker network disconnect <NetworkName> <ContainerName>
+# docker network connect <NetworkName> <ContainerName>
+
+# docker network disconnect bridge mysql
+# docker network connect expense mysql
+
+# docker rm backend
+
+# run the container with expense network
+# docker run -d --name backend --network expense backend:1.0.0  
+# docker inspect backend
+
+# docker exec -it backend bash
+# telnet mysql 3306

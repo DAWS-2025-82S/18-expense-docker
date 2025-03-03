@@ -10,3 +10,10 @@ COPY code /usr/share/nginx/html/
 
 # docker exec -it frontend bash
 # cat /etc/nginx/nginx.conf
+
+
+########## for host network ####################
+# change container name to localhost in nginx.conf
+
+# docker build -t frontend:1.0.0 .
+# docker run -d --name frontend --network host frontend:1.0.0

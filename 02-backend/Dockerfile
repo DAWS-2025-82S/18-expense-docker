@@ -3,7 +3,10 @@ WORKDIR /opt/backend
 COPY package.json .
 COPY *.js .
 RUN npm install
-ENV DB_HOST="mysql"
+# for bridge network
+#ENV DB_HOST="mysql"
+# For host network
+ENV DB_HOST="localhost"
 CMD ["node", "index.js"]
 
 
@@ -39,3 +42,8 @@ CMD ["node", "index.js"]
 
 # docker exec -it backend bash
 # telnet mysql 3306
+
+
+################# For host network #################
+# docker build -t backend:1.0.0 .
+# docker run -d --name backend --network host backend:1.0.0

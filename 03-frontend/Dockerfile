@@ -1,21 +1,31 @@
-FROM nginx
+#FROM nginx
+FROM nginx:stable-alpine3.20-perl
 RUN rm -rf /usr/share/nginx/html/index.html
 RUN rm -rf /etc/nginx/nginx.conf
+RUN mkdir -p /var/cache/nginx/client_temp && \
+        mkdir -p /var/cache/nginx/proxy_temp && \
+        mkdir -p /var/cache/nginx/fastcgi_temp && \
+        mkdir -p /var/cache/nginx/uwsgi_temp && \
+        mkdir -p /var/cache/nginx/scgi_temp && \
+        chown -R nginx:nginx /var/cache/nginx && \
+        chown -R nginx:nginx /etc/nginx/ && \
+        chmod -R 755 /etc/nginx/ && \
+        chown -R nginx:nginx /var/log/nginx
+
+RUN mkdir -p /etc/nginx/ssl/ && \
+    chown -R nginx:nginx /etc/nginx/ssl/ && \
+    chmod -R 755 /etc/nginx/ssl/
+
+RUN touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid /run/nginx.pid
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY code /usr/share/nginx/html/
+USER nginx
 
-
-# docker build -t frontend:1.0.0 .
-# docker run -d -p 80:80 --name frontend --network expense frontend:1.0.0
-
-# docker exec -it frontend bash
-# cat /etc/nginx/nginx.conf
-
-
-########## for host network ####################
-# change container name to localhost in nginx.conf
+# Optimised Docker Image
 
 # docker build -t frontend:1.0.0 .
-# docker run -d --name frontend --network host frontend:1.0.0
 
-# Host network is less secure and ports will exhaust
+# docker exec -it frontend sh
+
+

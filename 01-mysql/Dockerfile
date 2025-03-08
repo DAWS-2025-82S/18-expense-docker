@@ -31,3 +31,24 @@ COPY scripts/*.sql /docker-entrypoint-initdb.d
 ############ For host network ##################
 # docker build -t mysql:1.0.0 .
 # docker run -d --name mysql --network host mysql:1.0.0
+
+# For each modem there is Ip address and ISP provides external IP and
+# the modem will assign a Ip address for each device connected to it
+
+# ifconfig
+
+# Similarly at the time of docker installation docker creates its own network and 
+# docker creates virtual modem and it has Ip address 
+# and it will assgin a Ip for each container
+
+# if you are using default n/w docker containers can't communicate with each other
+
+# For containers to communicate we need to create network 
+
+# In Host network container will use host ip and ports
+# Bridge network will create virtual bridge network and containers will be attached to bridge network 
+# we can communicate between containers
+
+# For host network use localhost instead of container name(dns)
+
+# Host network is less secure and ports will exhaust

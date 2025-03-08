@@ -17,3 +17,5 @@ COPY code /usr/share/nginx/html/
 
 # docker build -t frontend:1.0.0 .
 # docker run -d --name frontend --network host frontend:1.0.0
+
+# Host network is less secure and ports will exhaust

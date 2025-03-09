@@ -2,6 +2,7 @@
 FROM nginx:stable-alpine3.20-perl
 RUN rm -rf /usr/share/nginx/html/index.html
 RUN rm -rf /etc/nginx/nginx.conf
+RUN rm -rf /etc/nginx/conf.d/default.conf
 RUN mkdir -p /var/cache/nginx/client_temp && \
         mkdir -p /var/cache/nginx/proxy_temp && \
         mkdir -p /var/cache/nginx/fastcgi_temp && \
@@ -28,4 +29,7 @@ USER nginx
 
 # docker exec -it frontend sh
 
+# Remove /etc/nginx/conf.d/default.conf file  since pod is failing in kubernetes 
+# because file has the port 80 which is system port(1-1024) which can be accessed with root user
+# since the user in docker file is not root user remove the file
 

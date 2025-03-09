@@ -14,10 +14,10 @@ CMD ["node", "index.js"]
 
 # export DOCKER_BUILDKIT=0
 
-# docker build -t layer-test:1.0.0 .
+# docker build -t dath1/layer-test:1.0.0 .
 
 # try this multiple times
 
-# docker push layer-test:1.0.0 .
+# docker push dath1/layer-test:1.0.0 .
 
 

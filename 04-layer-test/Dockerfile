@@ -10,3 +10,14 @@ RUN npm install
 #ENV DB_HOST="localhost"
 USER expense
 CMD ["node", "index.js"]
+
+
+# export DOCKER_BUILDKIT=0
+
+# docker build -t layer-test:1.0.0 .
+
+# try this multiple times
+
+# docker push layer-test:1.0.0 .
+
+
